@@ -1,7 +1,6 @@
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, Dict, List, Optional, Literal
 from functools import singledispatchmethod
-from xmlrpc.client import Boolean
 
 if TYPE_CHECKING:
     from app.domain.fem_loader import Loader
@@ -12,7 +11,7 @@ class Element:
     id: int
     nodes: List[int]
 
-    def __contains__(self, nid: int) -> Boolean:
+    def __contains__(self, nid: int) -> bool:
         return nid in self.nodes
 
 
@@ -46,15 +45,15 @@ class FEM:
         self.elements[e.id] = e
 
     @singledispatchmethod
-    def __contains__(self, item) -> Boolean:
+    def __contains__(self, item) -> bool:
         raise NotImplementedError("This object type is not valid for this method.")
 
     @__contains__.register(Node)
-    def _(self, n: Node) -> Boolean:
+    def _(self, n: Node) -> bool:
         return n.id in self.nodes
 
     @__contains__.register(Element)
-    def _(self, e: Element) -> Boolean:
+    def _(self, e: Element) -> bool:
         return e.id in self.elements
 
     def load(self, fem_loader: "Loader", file: str):
