@@ -4,7 +4,7 @@ from functools import singledispatchmethod
 from xmlrpc.client import Boolean
 
 if TYPE_CHECKING:
-    from app.domain.fem_repository import FEMRepository
+    from app.domain.fem_loader import Loader
 
 
 @dataclass
@@ -56,6 +56,9 @@ class FEM:
     @__contains__.register(Element)
     def _(self, e: Element) -> Boolean:
         return e.id in self.elements
+
+    def load(self, fem_loader: "Loader", file: str):
+        return fem_loader.load(self, file)
 
     def save(self, repo: "FEMRepository"):
         return repo.add(self)
