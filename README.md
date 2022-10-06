@@ -58,7 +58,7 @@ pip install flake8 black pytest pytest-cov bandit
 Quelques commandes d'analyse du code :
 
 ```
-flake8 . --statistices --exclude=venv*
+flake8 . --statistics --exclude=venv*
 pytest -svv
 bandit -r library_name -c bandit-yaml
 ```
