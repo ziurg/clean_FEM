@@ -48,7 +48,10 @@ pip install flake8 black pytest pytest-cov bandit
 ```
 
 > :heavy_exclamation_mark: En cas de blocage parefeu :key:, utiliser les options suivantes dans pip
-> --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host files.pythonhosted.org
+
+```
+--trusted-host pypi.org --trusted-host pypi.python.org --trusted-host files.pythonhosted.org
+```
 
 ## Test Driven Developpement
 
