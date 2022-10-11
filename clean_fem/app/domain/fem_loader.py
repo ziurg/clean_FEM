@@ -4,5 +4,5 @@ from app.domain.fem import FEM
 
 class Loader(metaclass=abc.ABCMeta):
     @abc.abstractmethod
-    def load(self, file) -> FEM:
+    def load(self, model, file) -> FEM:
         raise NotImplementedError

@@ -1,0 +1,54 @@
+@startuml
+
+fem.py.FEM --> loader.py.Loader : " use"
+nastran_interface.py.NastranInterface ..|> loader.py.Loader
+
+note "Inversion de dépendance." as N2 #LightGreen
+nastran_interface.py.NastranInterface .. N2 
+N2 .. loader.py.Loader
+
+namespace fem.py #LightYellow {
+    class Node {
+        id: int
+        x: float
+        y: float
+        z: float
+    }
+
+    class Element {
+        id: int
+        nodes: List[int]
+    }
+
+    class FEM {
+        nodes: Dict[int, Node]
+        elements: Dict[int, Element]
+        +add(item: Node|Element)
+        +load(interface:Loader, file: str)
+        -__contains__(item: Node|Element)
+    }
+}
+
+namespace loader.py #LightYellow {
+    abstract class  Loader {
+        +load(model: FEM, file: str) -> FEM
+    }
+}
+
+
+namespace nastran_interface.py #LightGreen {
+    interface  NastranInterface {
+        +load(file: str) -> FEM
+    }
+}
+
+@enduml
+
+package BASMATI << Database >> #LightBlue {
+}
+
+json JSON #LightBlue {
+   "fruit":"Apple",
+   "size":"Large",
+   "color": ["Red", "Green"]
+}

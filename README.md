@@ -44,7 +44,7 @@ venv\Scripts\activate
 
 ```
 python -m pip install --upgrade pip
-pip install flake8 black pytest pytest-cov bandit
+pip install flake8 black pytest pytest-cov pytest-bdd bandit
 ```
 
 > :heavy_exclamation_mark: En cas de blocage parefeu :key:, utiliser les options suivantes dans pip
@@ -79,3 +79,5 @@ Le _Domain_ (contenant la logique métier de notre logiciel) est constitué de 2
 
 - [fem.py](clean_fem/app/domain/fem.py) qui contient les objets relatifs à la création de notre modèle
 - [fem_loader](clean_fem/app/domain/fem_loader.py) qui sert à faire l'inversion de dépendance pour notre interface.
+
+![Diagram UML](docs/images/diagram.png)

@@ -45,7 +45,7 @@ class FEM:
         self.elements[e.id] = e
 
     @singledispatchmethod
-    def __contains__(self, item) -> bool:
+    def __contains__(self, _) -> bool:
         raise NotImplementedError("This object type is not valid for this method.")
 
     @__contains__.register(Node)
@@ -58,9 +58,6 @@ class FEM:
 
     def load(self, fem_loader: "Loader", file: str):
         return fem_loader.load(self, file)
-
-    def save(self, repo: "FEMRepository"):
-        return repo.add(self)
 
 
 @dataclass
