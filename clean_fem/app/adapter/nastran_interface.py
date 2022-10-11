@@ -1,4 +1,3 @@
-from typing import Optional
 from app.domain.fem import FEM, Node
 from app.domain.fem_loader import Loader
 
