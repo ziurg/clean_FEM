@@ -71,13 +71,19 @@ Ce programme a pour objectif de construire et manipuler un modèle éléments fi
 
 Nous introduisons également une interface pour pouvoir construire/charger le modèle FEM à partir d'un fichier texte.
 
-> Les fichiers textes pourraient être au format Nastran, nécessitant un parser plus complexe. Mais la mise en oeuvre serait la même.
+> Les fichiers textes pourraient être au format Nastran, mais cela nécessiterait un parser plus complexe à développer. Cependant la mise en oeuvre serait la même.
+
+<!-- ### L'Architecture Hexagonale
+
+Le principe fondamentale de l'Architecture Hexagonale ou Clean Architecture est de travailler par _couches_ en respectant un principe de dépendance descendante (les couches supérieures on des dépendances vers les couches inférieures, mais l'inverse est interdit). Ainsi des  -->
 
 ### Le _Domain_
 
 Le _Domain_ (contenant la logique métier de notre logiciel) est constitué de 2 fichiers :
 
 - [fem.py](clean_fem/app/domain/fem.py) qui contient les objets relatifs à la création de notre modèle
-- [fem_loader](clean_fem/app/domain/fem_loader.py) qui sert à faire l'inversion de dépendance pour notre interface.
+- [fem_loader.py](clean_fem/app/domain/fem_loader.py) qui sert à faire l'inversion de dépendance pour notre interface.
+
+Le fichier **fem_loader** contient ainsi une classe abstraite intitulée Loader, qui permet de réaliser l'inversion de dépendance, en spécifiant les méthodes devant être implémentées par l'interface.
 
 ![Diagram UML](docs/images/diagram.png)

@@ -1,11 +1,13 @@
 @startuml
 
-fem.py.FEM --> loader.py.Loader : " use"
-nastran_interface.py.NastranInterface ..|> loader.py.Loader
+fem.py.FEM --> fem_loader.py.Loader : " use"
+fem.py.FEM --> fem.py.Node
+fem.py.FEM --> fem.py.Element
+nastran_interface.py.NastranInterface ..|> fem_loader.py.Loader
 
 note "Inversion de dépendance." as N2 #LightGreen
 nastran_interface.py.NastranInterface .. N2 
-N2 .. loader.py.Loader
+N2 .. fem_loader.py.Loader
 
 namespace fem.py #LightYellow {
     class Node {
@@ -29,7 +31,7 @@ namespace fem.py #LightYellow {
     }
 }
 
-namespace loader.py #LightYellow {
+namespace fem_loader.py #LightYellow {
     abstract class  Loader {
         +load(model: FEM, file: str) -> FEM
     }
