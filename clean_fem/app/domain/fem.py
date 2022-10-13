@@ -1,9 +1,9 @@
 from dataclasses import dataclass
-from typing import TYPE_CHECKING, Dict, List, Optional, Literal
+from typing import TYPE_CHECKING, Dict, List, Optional, Literal, Union
 from functools import singledispatchmethod
 
 if TYPE_CHECKING:
-    from app.domain.fem_loader import Loader
+    from app.domain.fem_repo_interface import RepoInterface
 
 
 @dataclass
@@ -33,7 +33,7 @@ class FEM:
         self.elements = {}
 
     @singledispatchmethod
-    def add(self, item) -> None:
+    def add(self, item: Union[Node, Element]) -> None:
         raise NotImplementedError("This object type can't be added to the model.")
 
     @add.register(Node)
@@ -56,8 +56,11 @@ class FEM:
     def _(self, e: Element) -> bool:
         return e.id in self.elements
 
-    def load(self, fem_loader: "Loader", file: str):
-        return fem_loader.load(self, file)
+    def load(self, fem_interface: "RepoInterface", file: str):
+        return fem_interface.load(self, file)
+
+    def write(self, fem_interface: "RepoInterface", file: str):
+        return fem_interface.write(self, file)
 
 
 @dataclass
