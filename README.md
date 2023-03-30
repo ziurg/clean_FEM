@@ -27,7 +27,7 @@ Sur Github :
 
 Dans VS Code
 
-- Ouvrir un terminal et executer la commande<br>
+- Ouvrir un terminal et executer la commande :<br>
 
 ```
 git clone https://github.com/lien_vers_le_repo
