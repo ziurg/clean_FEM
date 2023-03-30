@@ -36,3 +36,9 @@ jobs:
             . venv/bin/activate
             bandit -r /home/circleci/repo --exclude /home/circleci/repo/venv --configfile bandit.yaml
       # curl -Os https://uploader.codecov.io/latest/linux/codecov chmod +x codecov ./codecov
+
+workflows:
+  build_and_test:
+    jobs:
+      - build
+
